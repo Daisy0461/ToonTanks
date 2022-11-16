@@ -6,11 +6,10 @@
 #include "GameFramework/Pawn.h"
 #include "BasePawn.generated.h"
 
-
 UCLASS()
 class TOONTANKS_API ABasePawn : public APawn
 {
-	GENERATED_BODY()
+	GENERATED_BODY()		//이유는 모르겠지만 12번째 줄에 있어야하고 이게 붉은 줄이 생긴다고 해도 크게 신경안써도 괜찮다.
 
 public:
 	// Sets default values for this pawn's properties
@@ -27,6 +26,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 private:
-	//UPROPERTY()
-	//class UCapsuleComponent* CapsuleComp;
+	UPROPERTY()
+	class UCapsuleComponent* CapsuleComp;
 };

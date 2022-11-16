@@ -8,7 +8,7 @@ ABasePawn::ABasePawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	RootComponent;
+	//RootComponent;
 
 }
 
@@ -22,7 +22,7 @@ void ABasePawn::BeginPlay()
 // Called every frame
 void ABasePawn::Tick(float DeltaTime)
 {
-	Super::Tick(DeltaTime);
+	Super::Tick(DeltaTime);		//Super가 있어야 밑에 작업이 원활하게 진행된다.
 
 }
 
