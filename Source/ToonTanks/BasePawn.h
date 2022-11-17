@@ -28,4 +28,13 @@ public:
 private:
 	UPROPERTY()
 	class UCapsuleComponent* CapsuleComp;
+
+	UPROPERTY()
+	USceneComponent* ProjectileSpawnPoint;		//위치만 있으면 되니까 USceneComponent를 사용한다./
+
+	UPROPERTY()
+	UStaticMeshComponent* BaseMesh;			//UStatic은 모든 Actor에 Default로 들어가 있어서 Forward Declaration이 필요없다.
+
+	UPROPERTY()
+	UStaticMeshComponent* TurretMesh;
 };

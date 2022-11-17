@@ -3,6 +3,7 @@
 
 #include "BasePawn.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -13,14 +14,20 @@ ABasePawn::ABasePawn()
 	CapsuleComp = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Capsule Collider"));
 	RootComponent = CapsuleComp;		//CapsuleComp를 RootComponent로 명시적으로 지정
 
+	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Base Mesh"));
+	BaseMesh->SetupAttachment(CapsuleComp);
+
+	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Turret Mesh"));
+	TurretMesh->SetupAttachment(BaseMesh);
+
+	ProjectileSpawnPoint = CreateAbstractDefaultSubobject<UCapsuleComponent>(TEXT("Spawn Point"));
+	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
 // Called when the game starts or when spawned
 void ABasePawn::BeginPlay()
 {
 	Super::BeginPlay();
-	//구성요소 또는 Subobject(하위객체)를 만들고 만든 것을 Default로 변환 return type은 <>안에 있는 타입. TEXT는 이름을 정한 것이다.
-	
 	
 }
 
