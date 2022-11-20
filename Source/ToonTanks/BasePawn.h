@@ -30,6 +30,9 @@ private:
 	class UCapsuleComponent* CapsuleComp;
 
 	UPROPERTY()
+	UStaticMeshComponent* BaseMesh;
+
+	UPROPERTY()
 	USceneComponent* ProjectileSpawnPoint;		//위치만 있으면 되니까 USceneComponent를 사용한다./
 
 	UPROPERTY()
