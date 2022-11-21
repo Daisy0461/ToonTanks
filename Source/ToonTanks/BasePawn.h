@@ -23,21 +23,24 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "test")
+	int32 testInt = 32;
+
+	UPROPERTY(EditInstanceOnly, Category = "test")
+	int32 testInt100 = 100;
+
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 private:
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	class UCapsuleComponent* CapsuleComp;
 
-	UPROPERTY()
-	UStaticMeshComponent* BaseMesh;
-
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	USceneComponent* ProjectileSpawnPoint;		//위치만 있으면 되니까 USceneComponent를 사용한다./
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* BaseMesh;			//UStatic은 모든 Actor에 Default로 들어가 있어서 Forward Declaration이 필요없다.
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* TurretMesh;
 };
