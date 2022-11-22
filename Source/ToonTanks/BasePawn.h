@@ -26,7 +26,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "test")
 	int32 testInt = 32;
 
-	UPROPERTY(EditInstanceOnly, Category = "test")
+	UPROPERTY(EditInstanceOnly)
 	int32 testInt100 = 100;
 
 	// Called to bind functionality to input
