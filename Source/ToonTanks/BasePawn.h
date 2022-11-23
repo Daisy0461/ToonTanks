@@ -32,15 +32,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Component")
 	class UCapsuleComponent* CapsuleComp;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Component")
 	USceneComponent* ProjectileSpawnPoint;		//위치만 있으면 되니까 USceneComponent를 사용한다./
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Component")
 	UStaticMeshComponent* BaseMesh;			//UStatic은 모든 Actor에 Default로 들어가 있어서 Forward Declaration이 필요없다.
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Component")
 	UStaticMeshComponent* TurretMesh;
 };
