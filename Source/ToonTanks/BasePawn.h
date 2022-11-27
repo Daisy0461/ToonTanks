@@ -23,12 +23,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "test")
-	int32 testInt = 32;
-
-	UPROPERTY(EditInstanceOnly)
-	int32 testInt100 = 100;
-
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 private:

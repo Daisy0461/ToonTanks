@@ -6,12 +6,20 @@
 #include "BasePawn.h"
 #include "Tank.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class TOONTANKS_API ATank : public ABasePawn
 {
 	GENERATED_BODY()
-	
+
+public:
+	// Sets default values for this pawn's properties
+	ATank();
+
+private:
+	UPROPERTY(VisibleAnywhere, Category="Components")
+	class USpringArmComponent* SpringArmComp;
+
+	UPROPERTY(VisibleAnywhere, Category="Components")
+	class UCameraComponent* CameraComp;
 };
