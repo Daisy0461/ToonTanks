@@ -4,6 +4,7 @@
 #include "Tank.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 ATank::ATank()
@@ -25,9 +26,19 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
     //TEXT에는 Input에서 이름으로 확인할 수 있는 것으로 넣고 두번째 파라미터는 이 BindAxis를 어디에 적용을 할건지
     //세번째는 어떤 함수에 Input으로 들어온 값을 넣을 것인지를 정하는 것이다.
-    PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
+    PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::MoveForward);
 }
 
-void ATank::Move(float Value){
+void ATank::MoveForward(float Value){
+    //UE_LOG(LogTemp, Display, TEXT("Your message"));
+    FVector MoveLocation(0.0f);     // FVector MoveLocation = FVector::ZeroVector; 와 동일하다.
+    float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
+    MoveLocation.X = Value * DeltaTime * Speed;
+    AddActorLocalOffset(MoveLocation);
+}
 
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);		//Super가 있어야 밑에 작업이 원활하게 진행된다.
+    
 }
