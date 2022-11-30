@@ -13,7 +13,7 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = true;
 	//RootComponent;
 	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("Spring Arm"));
-	RootComponent->SetupAttachment(RootComponent);
+	SpringArmComp->SetupAttachment(RootComponent);
 
     CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
     CameraComp->SetupAttachment(SpringArmComp);
@@ -30,7 +30,6 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 }
 
 void ATank::MoveForward(float Value){
-    //UE_LOG(LogTemp, Display, TEXT("Your message"));
     FVector MoveLocation(0.0f);     // FVector MoveLocation = FVector::ZeroVector; 와 동일하다.
     float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
     MoveLocation.X = Value * DeltaTime * Speed;
