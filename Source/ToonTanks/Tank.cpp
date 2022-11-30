@@ -33,7 +33,7 @@ void ATank::MoveForward(float Value){
     FVector MoveLocation(0.0f);     // FVector MoveLocation = FVector::ZeroVector; 와 동일하다.
     float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
     MoveLocation.X = Value * DeltaTime * Speed;
-    AddActorLocalOffset(MoveLocation);
+    AddActorLocalOffset(MoveLocation,true);
 }
 
 void ATank::Tick(float DeltaTime)
