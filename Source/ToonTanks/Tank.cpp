@@ -5,7 +5,6 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "DrawDebugHelpers.h"
 
 
 ATank::ATank()
@@ -65,6 +64,7 @@ void ATank::Tick(float DeltaTime)
         HitResult);
 
         FVector HitResultLocation = HitResult.ImpactPoint;
+        RotateTurret(HitResultLocation);
     }
 
 }
