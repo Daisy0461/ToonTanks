@@ -24,10 +24,9 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
-// Called every frame
-void ABasePawn::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);		//Super가 있어야 밑에 작업이 원활하게 진행된다.
-
+void ABasePawn::RotateTurret(FVector LookAtTarget){
+	FVector ToTarget = LookAtTarget - TurretMesh->GetComponentLocation(); //봐라봐야할 FVector를 구함
+	FRotator LookAtRotation = ToTarget.Rotation();		//봐라봐야할 Vector로 향하는 Rotation을 구함.
+	LookAtRotation = FRotator(0.f, LookAtRotation.Yaw, 0.f);		//Turret이 바닥을 향하거나 하늘을 향하면 안되기 때문에 Pitch, Roll 고정
+	
 }
-

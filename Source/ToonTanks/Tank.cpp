@@ -5,6 +5,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
 
 
 ATank::ATank()
@@ -48,4 +49,22 @@ void ATank::Turn(float Value){
     float DeltaTime = UGameplayStatics::GetWorldDeltaSeconds(this);
     MoveRotator.Yaw = Value*DeltaTime*TurnSpeed;
     AddActorLocalRotation(MoveRotator, true);
+}
+
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);		//Super가 있어야 밑에 작업이 원활하게 진행된다.
+
+    GetActorLocation();
+
+    FHitResult HitResult;
+    if(PlayerControllerRef){
+        PlayerControllerRef->GetHitResultUnderCursor
+        (ECollisionChannel::ECC_Visibility,
+        false,
+        HitResult);
+
+        FVector HitResultLocation = HitResult.ImpactPoint;
+    }
+
 }

@@ -15,9 +15,9 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+protected:
+	void RotateTurret(FVector LookAtTarget);
+
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category = "Component")
