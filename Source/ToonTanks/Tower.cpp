@@ -9,12 +9,9 @@
 void ATower::Tick(float DeltaTime){
     Super::Tick(DeltaTime);
 
-    FVector TankLoaction = Tank->GetActorLocation();
     if(CheckTankDistance()){
-        RotateTurret(TankLoaction);
+        RotateTurret(Tank->GetActorLocation());
     }
-
-
 }
 
 void ATower::BeginPlay(){
