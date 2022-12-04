@@ -28,6 +28,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
     //세번째는 어떤 함수에 Input으로 들어온 값을 넣을 것인지를 정하는 것이다.
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::MoveForward);
     PlayerInputComponent->BindAxis(TEXT("Turn"),this, &ATank::Turn);
+
+    PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
 
 void ATank::BeginPlay(){

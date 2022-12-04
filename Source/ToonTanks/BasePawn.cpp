@@ -36,3 +36,13 @@ void ABasePawn::RotateTurret(FVector LookAtTarget){
 			UGameplayStatics::GetWorldDeltaSeconds(this), 
 			10.f));
 }
+
+void ABasePawn::Fire(){
+	DrawDebugSphere(GetWorld(), 
+	ProjectileSpawnPoint->GetComponentLocation(), 
+	15.f, 
+	15, 
+	FColor::Blue, 
+	false, 
+	3.f);
+}
