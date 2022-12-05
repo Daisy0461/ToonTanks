@@ -26,4 +26,6 @@ public:
 private:
 	UPROPERTY(VisibleDefaultsOnly, Category = "Combat")
 	class UStaticMeshComponent* StaticMesh;
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
+	class UProjectileMovementComponent* MoveComp;
 };

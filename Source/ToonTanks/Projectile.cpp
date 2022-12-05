@@ -3,6 +3,7 @@
 
 #include "Projectile.h"
 #include "Components/StaticMeshComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -12,6 +13,7 @@ AProjectile::AProjectile()
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile"));
 	RootComponent = StaticMesh;
+	MoveComp = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("MoveComponent"));
 }
 
 // Called when the game starts or when spawned
