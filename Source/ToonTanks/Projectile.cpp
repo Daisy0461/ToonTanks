@@ -21,6 +21,7 @@ void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	StaticMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);		//delegate이며 AddDynamic으로 함수를 추가한다.
 }
 
 // Called every frame
@@ -30,3 +31,11 @@ void AProjectile::Tick(float DeltaTime)
 	
 }
 
+//HitComp = 때린 Compoent, OtherActor = 맞은 Actor, OtherComp = 맞은 MeshComponent
+void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit){
+	UE_LOG(LogTemp, Warning, TEXT("On Hit"));
+
+	UE_LOG(LogTemp, Display, TEXT("HitComponent: %s"), *HitComp->GetName());
+	UE_LOG(LogTemp, Display, TEXT("Hitted Actor Name: %s"), *OtherActor->GetName());
+	UE_LOG(LogTemp, Display, TEXT("Hitted Component: %s"), *OtherComp->GetName());
+}
