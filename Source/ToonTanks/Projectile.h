@@ -24,6 +24,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
+	UPROPERTY(EditAnywhere)
+	float Damage = 50.f;
+
 	UPROPERTY(VisibleDefaultsOnly, Category = "Combat")
 	class UStaticMeshComponent* StaticMesh;
 	UPROPERTY(VisibleAnywhere, Category = "Movement")

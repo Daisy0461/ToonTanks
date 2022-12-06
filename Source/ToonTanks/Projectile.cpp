@@ -4,6 +4,8 @@
 #include "Projectile.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "GameFramework/DamageType.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -33,9 +35,17 @@ void AProjectile::Tick(float DeltaTime)
 
 //HitComp = 때린 Compoent, OtherActor = 맞은 Actor, OtherComp = 맞은 MeshComponent
 void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit){
-	UE_LOG(LogTemp, Warning, TEXT("On Hit"));
+	auto MyOwner = GetOwner();
+	
+	if(MyOwner == nullptr) return;
+	UE_LOG(LogTemp, Display, TEXT("GetOwner Result: %s"), &MyOwner->GetName());
 
-	UE_LOG(LogTemp, Display, TEXT("HitComponent: %s"), *HitComp->GetName());
-	UE_LOG(LogTemp, Display, TEXT("Hitted Actor Name: %s"), *OtherActor->GetName());
-	UE_LOG(LogTemp, Display, TEXT("Hitted Component: %s"), *OtherComp->GetName());
+	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
+	auto DamageTypeClass = UDamageType::StaticClass();
+
+	if(OtherActor && OtherActor != this && OtherActor != MyOwner){
+		//아래 ApplyDamage를 Call하면 Damage Event가 발생한다. -> DamageTaken이 Call 된다.
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClass);
+		Destroy();
+	}
 }

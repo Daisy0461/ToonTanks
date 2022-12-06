@@ -39,8 +39,10 @@ void ABasePawn::RotateTurret(FVector LookAtTarget){
 }
 
 void ABasePawn::Fire(){
-	GetWorld()->SpawnActor<AProjectile>(
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(
 		ProjectileClass, 
 		ProjectileSpawnPoint->GetComponentLocation(), 
 		ProjectileSpawnPoint->GetComponentRotation());
+
+	Projectile->SetOwner(this);		//Projectile을 Spawn할 때, Owner는 이 Actor가 된다.
 }
