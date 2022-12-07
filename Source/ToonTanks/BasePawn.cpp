@@ -46,3 +46,7 @@ void ABasePawn::Fire(){
 
 	Projectile->SetOwner(this);		//Projectile을 Spawn할 때, Owner는 이 Actor가 된다.
 }
+
+void ABasePawn::HandleDestruction(){
+	
+}

@@ -35,10 +35,9 @@ void AProjectile::Tick(float DeltaTime)
 
 //HitComp = 때린 Compoent, OtherActor = 맞은 Actor, OtherComp = 맞은 MeshComponent
 void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit){
-	auto MyOwner = GetOwner();
-	
+	auto MyOwner = GetOwner();		//Tank가 쐈으면 Tank가 들어온다. Turret이 쏘면 Turret이 들어온다.
+									//이유는 Tank에서 나온 Projectile의 Owner는 Tank이기 떄문이다.	
 	if(MyOwner == nullptr) return;
-	UE_LOG(LogTemp, Display, TEXT("GetOwner Result: %s"), &MyOwner->GetName());
 
 	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
 	auto DamageTypeClass = UDamageType::StaticClass();

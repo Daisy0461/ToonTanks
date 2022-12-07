@@ -35,7 +35,13 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void ATank::BeginPlay(){
     Super::BeginPlay();
 
-    PlayerControllerRef = Cast<APlayerController>(GetController());         //()안에 있는 타입을 <>안에 있는 것을 바꾼다.
+    TankPlayerController = Cast<APlayerController>(GetController());         //()안에 있는 타입을 <>안에 있는 것을 바꾼다.
+}
+
+void ATank::HandleDestruction(){
+    Super::HandleDestruction();
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
 }
 
 void ATank::MoveForward(float Value){
@@ -59,8 +65,8 @@ void ATank::Tick(float DeltaTime)
     GetActorLocation();
 
     FHitResult HitResult;
-    if(PlayerControllerRef){
-        PlayerControllerRef->GetHitResultUnderCursor
+    if(TankPlayerController){
+        TankPlayerController->GetHitResultUnderCursor
         (ECollisionChannel::ECC_Visibility,
         false,
         HitResult);

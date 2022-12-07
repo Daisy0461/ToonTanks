@@ -18,6 +18,8 @@ public:
 	
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
+	void HandleDestruction();
+	APlayerController* GetTankPlayerController() const {return TankPlayerController;}
 
 protected:
 	// Called when the game starts or when spawned
@@ -37,5 +39,5 @@ private:
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float TurnSpeed = 100;
 
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 };
