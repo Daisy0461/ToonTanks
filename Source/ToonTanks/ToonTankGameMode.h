@@ -23,4 +23,5 @@ protected:
 private:
 	class ATank* Tank;
 	class Turret* Turret;
+	class AToonTankPlayerController* ToonTankPlayerController;
 };
