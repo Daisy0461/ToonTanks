@@ -20,6 +20,32 @@ void AToonTankGameMode::ActorDied(AActor* DeadActor){
 void AToonTankGameMode::BeginPlay(){
     Super::BeginPlay();
 
+    HandleGameStart();
+
+}
+
+void AToonTankGameMode::HandleGameStart(){
     Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));       //player가 사용하는 Tank를 나타낸다.
     ToonTankPlayerController = Cast<AToonTankPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+
+    if(ToonTankPlayerController){
+        ToonTankPlayerController->SetPlayerEnabledState(false);
+
+        FTimerHandle PlayerEnableTimerHandle;
+
+        //첫번째 파라미터는 사용할 함수가 있는 *를 전달한다. 여기에 존재하면 this를 넘기면 된다.
+        //두번째는 특이하게 함수를 적는데 파라미터는 안에 넣지 않는다. 사용하는 함수의 파라미터를 CreateUObject의 다음 파라미터로 넣으면 된다.
+        FTimerDelegate PlayerEnableTimerDelegate = FTimerDelegate::CreateUObject(
+            ToonTankPlayerController, 
+            &AToonTankPlayerController::SetPlayerEnabledState, 
+            true
+        );
+
+        GetWorldTimerManager().SetTimer(
+            PlayerEnableTimerHandle, 
+            PlayerEnableTimerDelegate, 
+            StartDelay, 
+            false
+        );
+    }
 }
