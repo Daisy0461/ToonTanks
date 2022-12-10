@@ -20,6 +20,11 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	//BlueprintImplementableEvent를 적으면 body를 만들 필요 없이 BP에서 기능적인것을 생성하면 된다.
+	//물론 C++에서도 부를 수 있다.
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
+
 private:
 	class ATank* Tank;
 	class Turret* Turret;
