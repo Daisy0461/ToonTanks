@@ -6,6 +6,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "GameFramework/DamageType.h"
 #include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -16,6 +17,8 @@ AProjectile::AProjectile()
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile"));
 	RootComponent = StaticMesh;
 	MoveComp = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("MoveComponent"));
+	TrailParticles = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("TrailParticles"));
+	TrailParticles->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
