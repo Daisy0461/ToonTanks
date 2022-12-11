@@ -25,12 +25,17 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartGame();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameOver(bool bWonGame);
+
 private:
 	class ATank* Tank;
 	class Turret* Turret;
 	class AToonTankPlayerController* ToonTankPlayerController;
 
 	float StartDelay = 3.f;
+	int32 TargetTowers = 0;
+	int32 GetTargetTowerCount();			//남아있는 Tower의 갯수를 구함
 
 	void HandleGameStart();
 };
