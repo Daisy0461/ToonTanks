@@ -6,6 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Projectile.h"
+#include "Particles/ParticleSystem.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -48,5 +49,7 @@ void ABasePawn::Fire(){
 }
 
 void ABasePawn::HandleDestruction(){
-	
+	if(DeathParticles){
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticles, GetActorLocation(), GetActorRotation());
+	}
 }
