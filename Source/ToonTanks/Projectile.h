@@ -44,4 +44,8 @@ private:
 	class USoundBase* LaunchSound;
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	USoundBase* HitSound;		//한번 class로 Forward declare를 하면 뒤에는 하지 않아도 괜찮다.
+
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TSubclassOf<class UCameraShakeBase> HitCameraShakeClass;		//이 변수에 대해서 BP를 만들었기 때문에 다른 일반적인 변수들과 다르게 TSubclassOf를 앞에 붙이고 사용이 가능하다.
 };
