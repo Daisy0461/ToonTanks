@@ -27,6 +27,8 @@ void AProjectile::BeginPlay()
 	Super::BeginPlay();
 	
 	StaticMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);		//delegate이며 AddDynamic으로 함수를 추가한다.
+	if(LaunchSound)
+		UGameplayStatics::PlaySoundAtLocation(this, LaunchSound, GetActorLocation(), 1.0, 0.5);
 }
 
 // Called every frame
@@ -51,8 +53,10 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 	if(OtherActor && OtherActor != this && OtherActor != MyOwner){
 		//아래 ApplyDamage를 Call하면 Damage Event가 발생한다. -> DamageTaken이 Call 된다.
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClass);
-		if(HitParticles)
+		if(HitParticles && HitSound){
 			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation());
+			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
+		}
 	}
 	Destroy();
 }

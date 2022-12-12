@@ -39,4 +39,9 @@ private:
 	class UParticleSystem* HitParticles;
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	class UParticleSystemComponent* TrailParticles;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class USoundBase* LaunchSound;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	USoundBase* HitSound;		//한번 class로 Forward declare를 하면 뒤에는 하지 않아도 괜찮다.
 };
