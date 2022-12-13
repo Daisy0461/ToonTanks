@@ -20,6 +20,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent *PlayerInputComponent) override;
 	void HandleDestruction();
 	APlayerController* GetTankPlayerController() const {return TankPlayerController;}
+	
+	bool bAlive = true;
 
 protected:
 	// Called when the game starts or when spawned
@@ -38,6 +40,7 @@ private:
 	float MoveSpeed = 300;
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float TurnSpeed = 100;
+
 
 	APlayerController* TankPlayerController;
 };
